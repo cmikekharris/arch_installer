@@ -45,8 +45,7 @@ done
 
 DOTFILES="/home/$(whoami)/dotfiles"
 if [ ! -d "$DOTFILES" ]; then
-    # Don't forget to replace Phantas0s with your own username on Github
-    git clone https://github.com/Phantas0s/dotfiles.git \
+    git clone https://github.com/cmikekharris/dotfiles.git \
     "$DOTFILES" >/dev/null
 fi
 
