@@ -17,10 +17,6 @@ curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/a
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_tools.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_web_browsers.csv >> $apps_path
 
-#curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_extras.csv >> $apps_path
-#curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_javascript.csv >> $apps_path
-#curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_zsh.csv >> $apps_path
-
 dialog --title "Welcome!" \
 --msgbox "Welcome to the install script for your apps and dotfiles!" \
     10 60
@@ -39,9 +35,6 @@ apps=(
   "tmux" "Tmux" on
   "tools" "Tools" on
   "web_browsers" "Web Browsers" on
-#  "extras" "Extras" on
-#  "javascript" "JavaScript" on
-#  "zsh" "ZSH Shell" on
 )
 
 dialog --checklist \
