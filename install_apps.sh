@@ -6,7 +6,6 @@ apps_path="/tmp/apps.csv"
 
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_bluetooth.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_core.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_fish.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_git.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_i3.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_neovim.csv >> $apps_path
@@ -16,6 +15,7 @@ curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/a
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_tmux.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_tools.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_web_browsers.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_zsh.csv >> $apps_path
 
 dialog --title "Welcome!" \
 --msgbox "Welcome to the install script for your apps and dotfiles!" \
@@ -25,7 +25,6 @@ dialog --title "Welcome!" \
 apps=(
   "bluetooth" "BlueTooth" on
   "core" "Core" on
-  "fish" "Fish" on
   "git" "Git" on
   "i3" "i3 Window Manager" on
   "neovim" "Neovim" on
@@ -35,6 +34,7 @@ apps=(
   "tmux" "Tmux" on
   "tools" "Tools" on
   "web_browsers" "Web Browsers" on
+  "zsh" "Zsh" on
 )
 
 dialog --checklist \
@@ -75,8 +75,7 @@ echo "$packages" | while read -r line; do
 done
 
 # Set default terminal for the user
-#    chsh -s "$(which zsh)" "$name"
-chsh -s "$(which fish)" "$name"
+chsh -s "$(which zsh)" "$name"
 
 # Enable network manager
 systemctl enable NetworkManager.service
