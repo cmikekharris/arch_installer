@@ -1,0 +1,4 @@
+core,xorg,X server
+core,xorg-xinit,Display server boot
+core,man,Manual
+core,man-pages,Manual pages

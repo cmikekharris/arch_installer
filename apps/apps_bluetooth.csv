@@ -1,0 +1,3 @@
+bluetooth,bluez,Provides the Bluetooth protocol stack
+bluetooth,bluez-utils,Provides the Bluetooth protocol stack utilities
+

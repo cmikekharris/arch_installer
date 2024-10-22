@@ -4,7 +4,7 @@ uefi=$(cat /var_uefi); hd=$(cat /var_hd);
 
 cat /comp > /etc/hostname && rm /comp
 
-pacman --noconfirm -S dialog
+pacman -S --noconfirm dialog
 
 pacman -S --noconfirm grub
 
@@ -21,19 +21,21 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # Set hardware clock from system clock
 hwclock --systohc
-# Don't forget to change "Europe/Berlin" with your own timezone!
+
 # To list the timezones: `timedatectl list-timezones`
-ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 
-# Replace en_US.UTF-8 by whatever locale you want.
 # You can run `cat /etc/locale.gen` to see all the locales available
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+cp /etc/locale.gen /etc/locale.gen_all
+echo "en_GB.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 
-# Set the keymap layout if you don't use an EN_US keyboard. Replace "fr-latin1" by the keyboard layout you want.
-# loadkeys fr-latin1
-# echo "KEYMAP=fr-latin1" >> /etc/vconsole.conf
+# Keyboard layout
+printf "KEYMAP=uk\n" > /etc/vconsole.conf
+printf "XKBLAYOUT=gb\n" >> /etc/vconsole.conf
+printf "XKBMODEL=pc105\n" >> /etc/vconsole.conf
+printf "XKBOPTIONS=terminate:ctrl_alt_bksp\n" >> /etc/vconsole.conf
 
 # No argument: ask for a username.
 # One argument: use the username passed as argument.

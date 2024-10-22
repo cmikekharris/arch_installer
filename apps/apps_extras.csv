@@ -1,0 +1,12 @@
+extras,scrot,Screenshot software
+extras,lxappearance,Theme switcher for GTK+
+extras,xcape,Configure modifier keys to act as other keys
+extras,btop,Interactive process viewer
+extras,arc-gtk-theme,i3 Desktop themes
+extras,python-neovim,Python for neovim
+extras,python2-neovim,Python2 for neovim (AUR)
+extras,ruby-neovim,Ruby for neovim (AUR)
+extras,nodejs-neovim,Nodejs for neovim (AUR)
+extras,urxvt-tabbedex-mina86-git,Improved tabs for Urxvt (AUR)
+extras,qutebrowser,Web browser
+extras,lynx,Web browser
