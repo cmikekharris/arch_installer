@@ -4,6 +4,7 @@ name=$(cat /tmp/user_name)
 
 apps_path="/tmp/apps.csv"
 
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_bluetooth.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_core.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_fish.csv >> $apps_path
 curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_git.csv >> $apps_path
@@ -26,13 +27,13 @@ dialog --title "Welcome!" \
 
 # Allow the user to select the group of packages he (or she) wants to install.
 apps=(
+  "bluetooth" "BlueTooth" on
   "core" "Core" on
   "fish" "Fish" on
   "git" "Git" on
   "i3" "i3 Window Manager" on
   "neovim" "Neovim" on
   "network" "Network" on
-  "notifier" "Notifier" on
   "notifier" "Notifier" on
   "terminal" "Terminal" on
   "tmux" "Tmux" on
