@@ -1,0 +1,6 @@
+bluetooth,bluez,Daemons for the bluetooth protocol stack
+bluetooth,bluez-libs,Deprecated libraries for the bluetooth protocol stack
+bluetooth,bluez-utils,Development and debugging utilities for the bluetooth protocol stack
+bluetooth,hidapi,Simple library for communicating with USB and Bluetooth HID devices
+bluetooth,libldac,LDAC Bluetooth encoder library
+bluetooth,sbc,Bluetooth Subband Codec (SBC) library

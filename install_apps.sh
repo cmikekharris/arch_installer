@@ -4,27 +4,42 @@ name=$(cat /tmp/user_name)
 
 apps_path="/tmp/apps.csv"
 
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.2/apps.csv > $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_bluetooth.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_core.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_git.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_i3.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_neovim.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_network.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_notifier.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_programming.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_shell.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_terminal.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_tmux.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_tools.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_web_browsers.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/apps/apps_work.csv >> $apps_path
 
 dialog --title "Welcome!" \
 --msgbox "Welcome to the install script for your apps and dotfiles!" \
     10 60
 
 # Allow the user to select the group of packages he (or she) wants to install.
-apps=("essential" "Essentials" on
-      "network" "Network" on
-      "tools" "Nice tools to have (highly recommended)" on
-      "tmux" "Tmux" on
-      "notifier" "Notification tools" on
-      "git" "Git & git tools" on
-      "i3" "i3 wm" on
-      "zsh" "The Z-Shell (zsh)" on
-      "neovim" "Neovim" on
-      "urxvt" "URxvt" on
-      "firefox" "Firefox (browser)" off
-      "js" "JavaScript tooling" off
-      "qutebrowser" "Qutebrowser (browser)" off
-      "lynx" "Lynx (browser)" off)
+apps=(
+  "bluetooth" "BlueTooth" on
+  "core" "Core" on
+  "git" "Git" on
+  "i3" "i3 Window Manager" on
+  "neovim" "Neovim" on
+  "network" "Network" on
+  "notifier" "Notifier" on
+  "programming" "Programming" on
+  "shell" "Shell" on
+  "terminal" "Terminal" on
+  "tmux" "Tmux" on
+  "tools" "Tools" on
+  "web_browsers" "Web Browsers" on
+  "work" "Work Apps" on
+)
 
 dialog --checklist \
 "You can now choose what group of application you want to install. \n\n\
@@ -74,7 +89,7 @@ done
 
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.2/install_user.sh > /tmp/install_user.sh;
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/install_user.sh > /tmp/install_user.sh;
 
 # Switch user and run the final script
 sudo -u "$name" sh /tmp/install_user.sh

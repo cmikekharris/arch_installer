@@ -7,12 +7,11 @@ timedatectl set-ntp true
 
 # Welcome message of type yesno - see `man dialog`
 dialog --defaultno --title "Are you sure?" --yesno \
-"This is my personnal arch linux install. \n\n\
-It will just DESTROY EVERYTHING on the hard disk of your choice. \n\n\
-Don't say YES if you are not sure about what you're doing! \n\n\
+"Arch Linux Install\n\n\
+It will DESTROY EVERYTHING on the hard disk. \n\n\
 Are you sure?" 15 60 || exit
 
-dialog --no-cancel --inputbox "Enter a name for your computer." \
+dialog --no-cancel --inputbox "Enter computer name." \
     10 60 2> comp
 
 comp=$(cat comp) && rm comp
@@ -27,8 +26,8 @@ devices_list=($(lsblk -d | awk '{print "/dev/" $1 " " $4 " on"}' \
 
 dialog --title "Choose your hard drive" --no-cancel --radiolist \
 "Where do you want to install your new system? \n\n\
-Select with SPACE, valid with ENTER. \n\n\
-WARNING: Everything will be DESTROYED on the hard disk!" \
+SPACE to select, ENTER to submit. \n\n\
+WARNING: Everything on the hard disk will be DESTROYED!" \
 15 60 4 "${devices_list[@]}" 2> hd
 
 hd=$(cat hd) && rm hd
@@ -135,7 +134,7 @@ echo "$uefi" > /mnt/var_uefi
 echo "$hd" > /mnt/var_hd
 mv comp /mnt/comp
 
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.2/install_chroot.sh > /mnt/install_chroot.sh
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.3/install_chroot.sh > /mnt/install_chroot.sh
 
 arch-chroot /mnt bash install_chroot.sh
 

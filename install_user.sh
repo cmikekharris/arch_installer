@@ -2,9 +2,12 @@
 
 mkdir -p "/home/$(whoami)/Documents"
 mkdir -p "/home/$(whoami)/Downloads"
+mkdir -p "/home/$(whoami)/Projects"
+mkdir -p "/home/$(whoami)/Software"
+mkdir -p "/home/$(whoami)/GoogleDrive"
 
-# Uncomment to set the keymap you want. Replace "fr" by your country code
-# localectl --no-convert set-x11-keymap fr
+# Uncomment to set the keymap you want.
+localectl --no-convert set-x11-keymap uk
 
 # Function able to install any package from the AUR (needs the package names as arguments).
 aur_install() {
@@ -47,7 +50,7 @@ DOTFILES="/home/$(whoami)/dotfiles"
 if [ ! -d "$DOTFILES" ]; then
     git clone https://github.com/cmikekharris/dotfiles.git "$DOTFILES" >/dev/null
     cd "$DOTFILES"
-    git checkout v0.2
+    git checkout v0.3
 fi
 
 source "$DOTFILES/zsh/.zshenv"

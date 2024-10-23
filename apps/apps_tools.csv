@@ -1,0 +1,12 @@
+tools,rsync,Synchronizing files across computers
+tools,arandr,xrandr GUI
+tools,fzf,Command line fuzzy finder
+tools,udiskie,Automount devices
+tools,ripgrep,Faster alternative to grep
+tools,htop,Interactive process viewer
+tools,git,Version control system
+tools,make,GNU make utility
+tools,unzip,Unzip utility
+tools,gcc,GCC compiler
+tools,xsel,Manipulate the X selection
+tools,scrot,Screenshot software
