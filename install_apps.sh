@@ -4,7 +4,7 @@ name=$(cat /tmp/user_name)
 
 apps_path="/tmp/apps.csv"
 
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.1/apps.csv > $apps_path
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.2/apps.csv > $apps_path
 
 dialog --title "Welcome!" \
 --msgbox "Welcome to the install script for your apps and dotfiles!" \
@@ -74,7 +74,7 @@ done
 
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.1/install_user.sh > /tmp/install_user.sh;
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.2/install_user.sh > /tmp/install_user.sh;
 
 # Switch user and run the final script
 sudo -u "$name" sh /tmp/install_user.sh
