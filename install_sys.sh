@@ -135,8 +135,7 @@ echo "$uefi" > /mnt/var_uefi
 echo "$hd" > /mnt/var_hd
 mv comp /mnt/comp
 
-curl https://raw.githubusercontent.com/cmikekharris\
-/arch_installer/master/install_chroot.sh > /mnt/install_chroot.sh
+curl https://raw.githubusercontent.com/cmikekharris/arch_installer/v0.1/install_chroot.sh > /mnt/install_chroot.sh
 
 arch-chroot /mnt bash install_chroot.sh
 
