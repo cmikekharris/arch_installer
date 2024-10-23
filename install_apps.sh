@@ -4,42 +4,32 @@ name=$(cat /tmp/user_name)
 
 apps_path="/tmp/apps.csv"
 
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_bluetooth.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_core.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_git.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_i3.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_neovim.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_network.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_notifier.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_terminal.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_tmux.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_tools.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_web_browsers.csv >> $apps_path
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/apps/apps_zsh.csv >> $apps_path
+curl https://raw.githubusercontent.com/cmikekharris\
+/arch_installer/master/apps.csv > $apps_path
 
 dialog --title "Welcome!" \
 --msgbox "Welcome to the install script for your apps and dotfiles!" \
     10 60
 
 # Allow the user to select the group of packages he (or she) wants to install.
-apps=(
-  "bluetooth" "BlueTooth" on
-  "core" "Core" on
-  "git" "Git" on
-  "i3" "i3 Window Manager" on
-  "neovim" "Neovim" on
-  "network" "Network" on
-  "notifier" "Notifier" on
-  "terminal" "Terminal" on
-  "tmux" "Tmux" on
-  "tools" "Tools" on
-  "web_browsers" "Web Browsers" on
-  "zsh" "Zsh" on
-)
+apps=("essential" "Essentials" on
+      "network" "Network" on
+      "tools" "Nice tools to have (highly recommended)" on
+      "tmux" "Tmux" on
+      "notifier" "Notification tools" on
+      "git" "Git & git tools" on
+      "i3" "i3 wm" on
+      "zsh" "The Z-Shell (zsh)" on
+      "neovim" "Neovim" on
+      "urxvt" "URxvt" on
+      "firefox" "Firefox (browser)" off
+      "js" "JavaScript tooling" off
+      "qutebrowser" "Qutebrowser (browser)" off
+      "lynx" "Lynx (browser)" off)
 
 dialog --checklist \
-"You can now choose what group of applications you want to install. \n\n\
-You can select an option with SPACE and submit your choices with ENTER." \
+"You can now choose what group of application you want to install. \n\n\
+You can select an option with SPACE and valid your choices with ENTER." \
 0 0 0 \
 "${apps[@]}" 2> app_choices
 choices=$(cat app_choices) && rm app_choices
@@ -72,20 +62,21 @@ echo "$packages" | while read -r line; do
     ((pacman --noconfirm --needed -S "$line" > /tmp/arch_install 2>&1) \
     || echo "$line" >> /tmp/aur_queue) \
     || echo "$line" >> /tmp/arch_install_failed
+
+    if [ "$line" = "zsh" ]; then
+        # Set Zsh as default terminal for our user
+        chsh -s "$(which zsh)" "$name"
+    fi
+
+    if [ "$line" = "networkmanager" ]; then
+        systemctl enable NetworkManager.service
+    fi
 done
-
-# Set default terminal for the user
-chsh -s "$(which zsh)" "$name"
-
-# Enable network manager
-systemctl enable NetworkManager.service
-
-# Enable bluetooth
-systemctl enable bluetooth.service
 
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
-curl https://raw.githubusercontent.com/cmikekharris/arch_installer/master/install_user.sh > /tmp/install_user.sh;
+curl https://raw.githubusercontent.com/cmikekharris\
+/arch_installer/master/install_user.sh > /tmp/install_user.sh;
 
 # Switch user and run the final script
 sudo -u "$name" sh /tmp/install_user.sh
